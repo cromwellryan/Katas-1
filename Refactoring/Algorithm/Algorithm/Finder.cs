@@ -5,11 +5,11 @@ namespace Algorithm
 {
     public class Finder
     {
-        private readonly List<Thing> _p;
+        private readonly List<Thing> things;
 
-        public Finder(List<Thing> p)
+        public Finder(List<Thing> things)
         {
-            _p = p;
+            this.things = things;
         }
 
         public FindResult FindClosest()
@@ -22,39 +22,19 @@ namespace Algorithm
             return Find(FindType.Furthest);
         }
 
-        private FindResult Find(FindType ft)
+        private FindResult Find(FindType findType)
         {
-            var tr = new List<FindResult>();
+            var allAgeDifferences = CalculateAllAgeDifferences();
 
-            for(var i = 0; i < _p.Count - 1; i++)
-            {
-                for(var j = i + 1; j < _p.Count; j++)
-                {
-                    var r = new FindResult();
-                    if(_p[i].BirthDate < _p[j].BirthDate)
-                    {
-                        r.P1 = _p[i];
-                        r.P2 = _p[j];
-                    }
-                    else
-                    {
-                        r.P1 = _p[j];
-                        r.P2 = _p[i];
-                    }
-                    r.D = r.P2.BirthDate - r.P1.BirthDate;
-                    tr.Add(r);
-                }
-            }
-
-            if(tr.Count < 1)
+            if(allAgeDifferences.Count < 1)
             {
                 return new FindResult();
             }
 
-            FindResult answer = tr[0];
-            foreach(var result in tr)
+            FindResult answer = allAgeDifferences[0];
+            foreach(var result in allAgeDifferences)
             {
-                switch(ft)
+                switch(findType)
                 {
                     case FindType.Closest:
                         if(result.D < answer.D)
@@ -73,6 +53,32 @@ namespace Algorithm
             }
 
             return answer;
+        }
+  
+        private List<FindResult> CalculateAllAgeDifferences()
+        {
+            var tr = new List<FindResult>();
+
+            for (var i = 0; i < things.Count - 1; i++)
+            {
+                for (var j = i + 1; j < things.Count; j++)
+                {
+                    var r = new FindResult();
+                    if (things[i].BirthDate < things[j].BirthDate)
+                    {
+                        r.P1 = things[i];
+                        r.P2 = things[j];
+                    }
+                    else
+                    {
+                        r.P1 = things[j];
+                        r.P2 = things[i];
+                    }
+                    r.D = r.P2.BirthDate - r.P1.BirthDate;
+                    tr.Add(r);
+                }
+            }
+            return tr;
         }
     }
 }
