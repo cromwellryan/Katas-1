@@ -36,7 +36,7 @@ namespace Algorithm.Test
             var list = new List<Thing>() { sue, greg };
             var finder = new Finder(list);
 
-            var result = finder.Find(FindType.Closest);
+            var result = finder.FindClosest();
 
             Assert.Same(sue, result.P1);
             Assert.Same(greg, result.P2);
@@ -48,7 +48,7 @@ namespace Algorithm.Test
             var list = new List<Thing>() { greg, mike };
             var finder = new Finder(list);
 
-            var result = finder.Find(FindType.Furthest);
+            var result = finder.FindFurthest();
 
             Assert.Same(greg, result.P1);
             Assert.Same(mike, result.P2);

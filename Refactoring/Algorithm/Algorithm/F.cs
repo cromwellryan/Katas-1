@@ -2,7 +2,7 @@
 
 namespace Algorithm
 {
-    public class F
+    public class FindResult
     {
         public Thing P1 { get; set; }
         public Thing P2 { get; set; }

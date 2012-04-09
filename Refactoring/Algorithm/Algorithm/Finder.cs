@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Algorithm
 {
@@ -11,15 +12,25 @@ namespace Algorithm
             _p = p;
         }
 
-        public F Find(FindType ft)
+        public FindResult FindClosest()
         {
-            var tr = new List<F>();
+            return Find(FindType.Closest);
+        }
+
+        public FindResult FindFurthest()
+        {
+            return Find(FindType.Furthest);
+        }
+
+        public FindResult Find(FindType ft)
+        {
+            var tr = new List<FindResult>();
 
             for(var i = 0; i < _p.Count - 1; i++)
             {
                 for(var j = i + 1; j < _p.Count; j++)
                 {
-                    var r = new F();
+                    var r = new FindResult();
                     if(_p[i].BirthDate < _p[j].BirthDate)
                     {
                         r.P1 = _p[i];
@@ -37,10 +48,10 @@ namespace Algorithm
 
             if(tr.Count < 1)
             {
-                return new F();
+                return new FindResult();
             }
 
-            F answer = tr[0];
+            FindResult answer = tr[0];
             foreach(var result in tr)
             {
                 switch(ft)
