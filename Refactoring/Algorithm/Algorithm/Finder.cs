@@ -22,7 +22,7 @@ namespace Algorithm
             return Find(FindType.Furthest);
         }
 
-        public FindResult Find(FindType ft)
+        private FindResult Find(FindType ft)
         {
             var tr = new List<FindResult>();
 
