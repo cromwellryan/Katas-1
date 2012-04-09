@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Finder.cs" />
     <Compile Include="F.cs" />
-    <Compile Include="FT.cs" />
+    <Compile Include="FindType.cs" />
     <Compile Include="Thing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
