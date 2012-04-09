@@ -37,14 +37,14 @@ namespace Algorithm
                 switch(findType)
                 {
                     case FindType.Closest:
-                        if(result.D < answer.D)
+                        if(result.Difference < answer.Difference)
                         {
                             answer = result;
                         }
                         break;
 
                     case FindType.Furthest:
-                        if(result.D > answer.D)
+                        if(result.Difference > answer.Difference)
                         {
                             answer = result;
                         }
@@ -66,15 +66,15 @@ namespace Algorithm
                     var r = new FindResult();
                     if (things[i].BirthDate < things[j].BirthDate)
                     {
-                        r.P1 = things[i];
-                        r.P2 = things[j];
+                        r.Oldest = things[i];
+                        r.Youngest = things[j];
                     }
                     else
                     {
-                        r.P1 = things[j];
-                        r.P2 = things[i];
+                        r.Oldest = things[j];
+                        r.Youngest = things[i];
                     }
-                    r.D = r.P2.BirthDate - r.P1.BirthDate;
+                    r.Difference = r.Youngest.BirthDate - r.Oldest.BirthDate;
                     tr.Add(r);
                 }
             }

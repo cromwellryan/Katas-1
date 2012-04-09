@@ -4,8 +4,8 @@ namespace Algorithm
 {
     public class FindResult
     {
-        public Thing P1 { get; set; }
-        public Thing P2 { get; set; }
-        public TimeSpan D { get; set; }
+        public Thing Oldest { get; set; }
+        public Thing Youngest { get; set; }
+        public TimeSpan Difference { get; set; }
     }
 }
