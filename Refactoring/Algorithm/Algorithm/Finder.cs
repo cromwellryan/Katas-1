@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Algorithm
@@ -26,35 +27,28 @@ namespace Algorithm
         {
             var allAgeDifferences = CalculateAllAgeDifferences();
 
-            if(allAgeDifferences.Count < 1)
-            {
-                return new FindResult();
-            }
+            var answer = new FindResult();
 
-            FindResult answer = allAgeDifferences[0];
-            foreach(var result in allAgeDifferences)
+            if (allAgeDifferences.Any())
             {
-                switch(findType)
+                var ordered = from result in allAgeDifferences
+                              orderby result.Difference ascending
+                              select result;
+
+                switch (findType)
                 {
                     case FindType.Closest:
-                        if(result.Difference < answer.Difference)
-                        {
-                            answer = result;
-                        }
+                        answer = ordered.First();
                         break;
-
                     case FindType.Furthest:
-                        if(result.Difference > answer.Difference)
-                        {
-                            answer = result;
-                        }
+                        answer = ordered.Last();
                         break;
                 }
             }
 
             return answer;
         }
-  
+
         private List<FindResult> CalculateAllAgeDifferences()
         {
             var tr = new List<FindResult>();
