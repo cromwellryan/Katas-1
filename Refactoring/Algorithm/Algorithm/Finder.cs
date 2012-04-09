@@ -11,7 +11,7 @@ namespace Algorithm
             _p = p;
         }
 
-        public F Find(FT ft)
+        public F Find(FindType ft)
         {
             var tr = new List<F>();
 
@@ -45,14 +45,14 @@ namespace Algorithm
             {
                 switch(ft)
                 {
-                    case FT.One:
+                    case FindType.Closest:
                         if(result.D < answer.D)
                         {
                             answer = result;
                         }
                         break;
 
-                    case FT.Two:
+                    case FindType.Furthest:
                         if(result.D > answer.D)
                         {
                             answer = result;

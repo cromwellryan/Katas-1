@@ -1,8 +1,8 @@
 ﻿namespace Algorithm
 {
-    public enum FT
+    public enum FindType
     {
-        One,
-        Two
+        Closest,
+        Furthest
     }
 }
