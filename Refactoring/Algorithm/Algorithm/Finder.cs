@@ -57,22 +57,33 @@ namespace Algorithm
             {
                 for (var j = i + 1; j < things.Count; j++)
                 {
-                    var r = new FindResult();
-                    if (things[i].BirthDate < things[j].BirthDate)
-                    {
-                        r.Oldest = things[i];
-                        r.Youngest = things[j];
-                    }
-                    else
-                    {
-                        r.Oldest = things[j];
-                        r.Youngest = things[i];
-                    }
-                    r.Difference = r.Youngest.BirthDate - r.Oldest.BirthDate;
+                    var left = things[i];
+                    var right = things[j];
+                    
+                    var r = CreateFindResultFromTwoThings(right, left);
+
                     tr.Add(r);
                 }
             }
             return tr;
+        }
+
+        private static FindResult CreateFindResultFromTwoThings(Thing right, Thing left)
+        {
+            var r = new FindResult();
+
+            if (left.BirthDate < right.BirthDate)
+            {
+                r.Oldest = left;
+                r.Youngest = right;
+            }
+            else
+            {
+                r.Oldest = right;
+                r.Youngest = left;
+            }
+            r.Difference = r.Youngest.BirthDate - r.Oldest.BirthDate;
+            return r;
         }
     }
 }
